@@ -10,5 +10,5 @@ var machineSchema = new Schema({
     DateTime : {type : Date}
 });
 
-mongoose.model('User', machineSchema);
+mongoose.model('Machine', machineSchema);
 

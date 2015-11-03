@@ -12,5 +12,5 @@ var appointmentSchema = new Schema({
     DateTime : {type : Date}
 });
 
-mongoose.model('User', appointmentSchema);
+mongoose.model('Appointment', appointmentSchema);
 

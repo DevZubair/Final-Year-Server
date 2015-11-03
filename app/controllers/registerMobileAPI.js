@@ -1,13 +1,13 @@
 var express = require('express'),
   router = express.Router(),
   mongoose = require('mongoose'),
-  Registration = mongoose.model('Registration');
+    User = mongoose.model('User');
 
 module.exports = function (app) {
   app.use('/', router);
 };
 
-router.post('/register', function (req, res, next) {
+router.post('/registerMobile', function (req, res, next) {
 
     res.send({
       code : 404 ,

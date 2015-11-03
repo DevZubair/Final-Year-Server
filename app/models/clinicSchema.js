@@ -9,5 +9,5 @@ var clinicSchema = new Schema({
     Doctors : []
 });
 
-mongoose.model('User', clinicSchema);
+mongoose.model('Clinic', clinicSchema);
 clinicSchema.plugin(uniqueValidator, { message: 'Error, clinic name match found' });

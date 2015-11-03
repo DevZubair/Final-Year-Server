@@ -12,5 +12,5 @@ var doctorsSchema = new Schema({
     Status : {type : String}
 });
 
-mongoose.model('User', doctorsSchema);
+mongoose.model('Doctor', doctorsSchema);
 

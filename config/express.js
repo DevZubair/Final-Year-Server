@@ -32,12 +32,12 @@ module.exports = function(app, config) {
   app.use(compress());
   app.use(methodOverride());
 
-  var controllers1 = glob.sync(config.root + '/app/controllers/registrationAPI.js');
+  var controllers1 = glob.sync(config.root + '/app/controllers/home.js');
 
   controllers1.forEach(function (controller) {
     require(controller)(app);
   });
-  var controllers2 = glob.sync(config.root + '/app/controllers/home.js');
+  var controllers2 = glob.sync(config.root + '/app/controllers/registerMobileAPI.js');
 
   controllers2.forEach(function (controller) {
     require(controller)(app);

@@ -1,12 +1,12 @@
 var express        = require('express'),
-  glob           = require('glob'),
-  app            = express(),
-  favicon        = require('serve-favicon'),
-  logger         = require('morgan'),
-  cookieParser   = require('cookie-parser'),
-  bodyParser     = require('body-parser'),
-  compress       = require('compression'),
-  methodOverride = require('method-override');
+    glob           = require('glob'),
+    app            = express(),
+    favicon        = require('serve-favicon'),
+    logger         = require('morgan'),
+    cookieParser   = require('cookie-parser'),
+    bodyParser     = require('body-parser'),
+    compress       = require('compression'),
+    methodOverride = require('method-override');
 
 module.exports = function(app, config) {
   var env = process.env.NODE_ENV || 'production';
@@ -77,7 +77,11 @@ module.exports = function(app, config) {
   controllers9.forEach(function (controller) {
     require(controller)(app);
   });
+  var controllers10 = glob.sync(config.root + '/app/controllers/getAllAppointmentsAPI.js');
 
+  controllers10.forEach(function (controller) {
+    require(controller)(app);
+  });
 
   app.use(function (req, res, next) {
     var err = new Error('Not Found');

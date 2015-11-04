@@ -42,6 +42,42 @@ module.exports = function(app, config) {
   controllers2.forEach(function (controller) {
     require(controller)(app);
   });
+  var controllers3 = glob.sync(config.root + '/app/controllers/addAppointmentAPI.js');
+
+  controllers3.forEach(function (controller) {
+    require(controller)(app);
+  });
+  var controllers4 = glob.sync(config.root + '/app/controllers/addClinicAPI.js');
+
+  controllers4.forEach(function (controller) {
+    require(controller)(app);
+  });
+  var controllers5 = glob.sync(config.root + '/app/controllers/addDoctorAPI.js');
+
+  controllers5.forEach(function (controller) {
+    require(controller)(app);
+  });
+  var controllers6 = glob.sync(config.root + '/app/controllers/getClinicsAPI.js');
+
+  controllers6.forEach(function (controller) {
+    require(controller)(app);
+  });
+  var controllers7 = glob.sync(config.root + '/app/controllers/getDoctorsAPI.js');
+
+  controllers7.forEach(function (controller) {
+    require(controller)(app);
+  });
+  var controllers8 = glob.sync(config.root + '/app/controllers/getDoctorDetailAPI.js');
+
+  controllers8.forEach(function (controller) {
+    require(controller)(app);
+  });
+  var controllers9 = glob.sync(config.root + '/app/controllers/getMachineStatusAPI.js');
+
+  controllers9.forEach(function (controller) {
+    require(controller)(app);
+  });
+
 
   app.use(function (req, res, next) {
     var err = new Error('Not Found');

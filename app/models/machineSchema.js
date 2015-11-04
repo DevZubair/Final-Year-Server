@@ -5,7 +5,7 @@ var mongoose = require('mongoose'),
 var machineSchema = new Schema({
     ClinicID : {type : String},
     DoctorID : {type : String},
-    CurrentNumber : {type : String},
+    CurrentNumber : {type : Number},
     WaitingPersons : [],
     DateTime : {type : Date}
 });

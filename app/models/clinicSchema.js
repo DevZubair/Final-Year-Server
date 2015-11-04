@@ -6,7 +6,8 @@ var clinicSchema = new Schema({
     Name : {type : String, unique: true},
     Location : {type : String},
     Timings : {type : String},
-    Doctors : []
+    Doctors : [],
+    createdDate : {type : Date}
 });
 
 mongoose.model('Clinic', clinicSchema);

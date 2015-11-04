@@ -6,7 +6,8 @@ var userSchema = new Schema({
     mobileID : {type : String, unique: true},
     Location : {type : String},
     Appointments : [],
-    Reviews : []
+    Reviews : [],
+    createdDate : { type : Date}
 });
 
 mongoose.model('User', userSchema);

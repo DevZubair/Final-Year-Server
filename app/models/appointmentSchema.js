@@ -3,6 +3,7 @@ var mongoose = require('mongoose'),
     uniqueValidator = require('mongoose-unique-validator');
 
 var appointmentSchema = new Schema({
+    MobileID : {type : String},
     AppointmentNumber : {type : Number},
     PatientFirstName : {type : String},
     PatientLastName : {type : String},

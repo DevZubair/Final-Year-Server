@@ -26,7 +26,7 @@ router.post('/getClinicDoctors', function (req, res, next) {
                 res.send({
                     code: 200,
                     content : allDoctors,
-                    msg: 'Doctors retrieved successfully'
+                    msg: 'Clinic Doctors retrieved successfully'
                 });
             }
             else {

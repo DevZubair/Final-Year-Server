@@ -11,7 +11,7 @@ router.post('/getDoctorDetail', function (req, res, next) {
 
     var DoctorID = req.body.DoctorID || req.query.DoctorID || req.headers['x-access-DoctorID'];
 
-    Doctor.find({id : DoctorID},{__v:0},
+    Doctor.find({_id : DoctorID},{__v:0},
 
         function(err,doctor) {
 

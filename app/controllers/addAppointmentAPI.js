@@ -101,7 +101,7 @@ router.post('/addAppointment', function (req, res, next) {
                     else{
                         var appointment_info=new Appointment({
                             MobileID : MobileID,
-                            AppointmentNumber : (machine.CurrentNumber + machine.WaitingPersons.length) + 1,
+                            AppointmentNumber : 1,
                             PatientFirstName : PatientFirstName,
                             PatientLastName : PatientLastName,
                             PatientAge : PatientAge,
@@ -139,7 +139,7 @@ router.post('/addAppointment', function (req, res, next) {
                                         res.send({
                                             code: 200,
                                             content: 'Success',
-                                            AppointmentNumber : (machine.CurrentNumber + machine.WaitingPersons.length) + 1,
+                                            AppointmentNumber : 1,
                                             msg: 'Appointment is saved in the db'
                                         });
                                     }

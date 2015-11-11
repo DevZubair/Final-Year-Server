@@ -19,7 +19,7 @@ router.post('/addDoctor', function (req, res, next) {
 
     if(DoctorFirstName && DoctorLastName && ClinicID && Timings)
     {
-        Clinic.findOne({id : ClinicID}, function (err,clinic) {
+        Clinic.findOne({_id : ClinicID}, function (err,clinic) {
             if (err) {
                 res.send({
                     code: 500,
@@ -59,17 +59,17 @@ router.post('/addDoctor', function (req, res, next) {
                                 res.send({
                                     code : 400,
                                     content : 'Bad Request',
-                                    msg : 'Clinic is not saved in the db'
+                                    msg : 'Doctor is not saved in the db'
                                 });
                             }
                             else{
-                                Clinic.update({"id" : ClinicID},{
+                                Clinic.update({"_id" : ClinicID},{
                                     $addToSet: { Doctors: data.id }
                                 }, function () {
                                     res.send({
                                         code : 200,
                                         content : 'Success',
-                                        msg : 'Clinic is saved in the db'
+                                        msg : 'Doctor is saved in the db'
                                     });
                                 });
                             }

@@ -7,7 +7,7 @@ module.exports = function (app) {
     app.use('/', router);
 };
 
-router.post('/getAllClinics', function (req, res, next) {
+router.get('/getAllClinics', function (req, res, next) {
 
     Clinic.find({},{__v:0},
 

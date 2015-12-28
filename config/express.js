@@ -9,9 +9,9 @@ var express        = require('express'),
     methodOverride = require('method-override');
 
 module.exports = function(app, config) {
-  var env = process.env.NODE_ENV || 'production';
+  var env = process.env.NODE_ENV || 'development';
   app.locals.ENV = env;
-  app.locals.ENV_DEVELOPMENT = env == 'production';
+  app.locals.ENV_DEVELOPMENT = env == 'development';
 
   app.use(logger('dev'));
   app.use(function(req, res, next) {
@@ -82,6 +82,11 @@ module.exports = function(app, config) {
   controllers10.forEach(function (controller) {
     require(controller)(app);
   });
+  var controllers11 = glob.sync(config.root + '/app/controllers/changeServeNumberAPI.js');
+
+  controllers11.forEach(function (controller) {
+    require(controller)(app);
+  });
 
   app.use(function (req, res, next) {
     var err = new Error('Not Found');
@@ -89,7 +94,7 @@ module.exports = function(app, config) {
     next(err);
   });
 
-  if(app.get('env') === 'production'){
+  if(app.get('env') === 'development'){
     app.use(function (err, req, res, next) {
       res.status(err.status || 500);
       res.send(err);

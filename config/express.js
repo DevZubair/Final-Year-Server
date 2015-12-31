@@ -87,6 +87,11 @@ module.exports = function(app, config) {
   controllers11.forEach(function (controller) {
     require(controller)(app);
   });
+  var controllers12 = glob.sync(config.root + '/app/controllers/doctorLoginAPI.js');
+
+  controllers12.forEach(function (controller) {
+    require(controller)(app);
+  });
 
   app.use(function (req, res, next) {
     var err = new Error('Not Found');

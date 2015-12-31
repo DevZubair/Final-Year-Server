@@ -1,20 +1,20 @@
 var express = require('express'),
     router    = express.Router(),
     mongoose     = require('mongoose'),
-    Machine = mongoose.model('Machine');
+    Doctor = mongoose.model('Doctor');
 
 module.exports = function (app) {
     app.use('/', router);
 };
 
-router.post('/getMachineDetail', function (req, res, next) {
+router.post('/doctorLogin', function (req, res, next) {
 
-    var DoctorID = req.body.DoctorID || req.query.DoctorID || req.headers['x-access-DoctorID'],
-    ClinicID = req.body.ClinicID || req.query.ClinicID || req.headers['x-access-ClinicID'];
+    var Username = req.body.Username || req.query.Username || req.headers['x-access-Username'],
+        Password = req.body.Password || req.query.Password || req.headers['x-access-Password'];
 
-    Machine.find({DoctorID : DoctorID, ClinicID : ClinicID},{__v:0},
+    Doctor.find({Username : Username, Password : Password},{__v:0},
 
-        function(err,machine) {
+        function(err,doctor) {
 
             if(err){
                 res.send({
@@ -23,18 +23,18 @@ router.post('/getMachineDetail', function (req, res, next) {
                     msg: 'API not called properly'
                 });
             }
-            else if(machine!=''){
+            else if(doctor!=''){
                 res.send({
                     code: 200,
-                    content : machine[0],
-                    msg: 'Machine retrieved successfully'
+                    content : doctor[0],
+                    msg: 'Doctor logged in successfully'
                 });
             }
             else {
                 res.send({
                     code: 404,
                     content: 'Not Found',
-                    msg: 'No Machine found'
+                    msg: 'No Doctor found'
                 });
             }
         })

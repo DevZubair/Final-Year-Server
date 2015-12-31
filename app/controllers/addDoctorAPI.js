@@ -15,9 +15,11 @@ router.post('/addDoctor', function (req, res, next) {
         Role            = req.body.Role || req.query.Role || req.headers['x-access-Role'],
         Speciality      = req.body.Speciality || req.query.Speciality || req.headers['x-access-Speciality'],
         ClinicID        = req.body.ClinicID || req.query.ClinicID || req.headers['x-access-ClinicID'],
-        Timings         = req.body.Timings || req.query.Timings || req.headers['x-access-Timings'];
+        Timings         = req.body.Timings || req.query.Timings || req.headers['x-access-Timings'],
+        Password         = req.body.Password || req.query.Password || req.headers['x-access-Password'],
+        Username         = req.body.Username || req.query.Username || req.headers['x-access-Username'];
 
-    if(DoctorFirstName && DoctorLastName && ClinicID && Timings)
+    if(DoctorFirstName && DoctorLastName && ClinicID && Timings && Password && Username)
     {
         Clinic.findOne({_id : ClinicID}, function (err,clinic) {
             if (err) {
@@ -51,7 +53,9 @@ router.post('/addDoctor', function (req, res, next) {
                             Speciality : Speciality,
                             ClinicID : ClinicID,
                             Timings : Timings,
-                            Status : "Available"
+                            Status : "Available",
+                            Password : Password,
+                            Username : Username
                         });
 
                         doctor_info.save(function(error,data){

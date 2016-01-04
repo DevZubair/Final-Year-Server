@@ -8,6 +8,7 @@ var appointmentSchema = new Schema({
     PatientFirstName : {type : String},
     PatientLastName : {type : String},
     PatientAge : {type : Number},
+    Gender : {type : String},
     ClinicID : {type : String},
     DoctorID : {type : String},
     DateTime : {type : Date}

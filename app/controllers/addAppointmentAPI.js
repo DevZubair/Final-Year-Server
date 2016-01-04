@@ -17,7 +17,8 @@ router.post('/addAppointment', function (req, res, next) {
         PatientLastName = req.body.PatientLastName || req.query.PatientLastName || req.headers['x-access-PatientLastName'],
         PatientAge = req.body.PatientAge || req.query.PatientAge || req.headers['x-access-PatientAge'],
         ClinicID = req.body.ClinicID || req.query.ClinicID || req.headers['x-access-ClinicID'],
-        DoctorID = req.body.DoctorID || req.query.DoctorID || req.headers['x-access-DoctorID'];
+        DoctorID = req.body.DoctorID || req.query.DoctorID || req.headers['x-access-DoctorID'],
+        Gender = req.body.Gender || req.query.Gender || req.headers['x-access-Gender'];
 
     if(MobileID && PatientFirstName && PatientLastName && ClinicID && DoctorID)
     {

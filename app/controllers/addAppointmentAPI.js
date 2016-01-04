@@ -30,7 +30,7 @@ router.post('/addAppointment', function (req, res, next) {
                     msg: 'Internal Server Error'
                 });
             }
-            else if (machine != null) {
+            else if (machine[0] != '') {
 
                 Appointment.findOne({MobileID : MobileID, ClinicID : ClinicID, DoctorID : DoctorID}, function (err,appointment) {
                     if (err) {
@@ -54,6 +54,7 @@ router.post('/addAppointment', function (req, res, next) {
                             PatientFirstName : PatientFirstName,
                             PatientLastName : PatientLastName,
                             PatientAge : PatientAge,
+                            Gender : Gender,
                             ClinicID : ClinicID,
                             DoctorID : DoctorID,
                             DateTime : new Date()
@@ -68,7 +69,7 @@ router.post('/addAppointment', function (req, res, next) {
                                 });
                             }
                             else{
-                                Machine.update({"id" : machine.id},{
+                                Machine.update({"_id" : machine.id},{
                                     $addToSet: { WaitingPersons: MobileID}
                                 }, function () {
                                     res.send({

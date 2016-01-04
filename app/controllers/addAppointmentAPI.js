@@ -42,7 +42,7 @@ router.post('/addAppointment', function (req, res, next) {
                     }
                     else if (appointment != null) {
                         res.send({
-                            code: 200,
+                            code: 400,
                             content: 'Appointment Found',
                             msg: 'Appointment is already taken from this user'
                         });
@@ -95,7 +95,7 @@ router.post('/addAppointment', function (req, res, next) {
                     }
                     else if (appointment != null) {
                         res.send({
-                            code: 200,
+                            code: 400,
                             content: 'Appointment Found',
                             msg: 'Appointment is already taken from this user'
                         });

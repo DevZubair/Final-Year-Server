@@ -82,14 +82,14 @@ module.exports = function(app, config) {
   controllers10.forEach(function (controller) {
     require(controller)(app);
   });
-  var controllers11 = glob.sync(config.root + '/app/controllers/changeServeNumberAPI.js');
-
-  controllers11.forEach(function (controller) {
-    require(controller)(app);
-  });
   var controllers12 = glob.sync(config.root + '/app/controllers/doctorLoginAPI.js');
 
   controllers12.forEach(function (controller) {
+    require(controller)(app);
+  });
+  var controllers13 = glob.sync(config.root + '/app/controllers/getAllUsersAPI.js');
+
+  controllers13.forEach(function (controller) {
     require(controller)(app);
   });
 

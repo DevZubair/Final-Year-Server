@@ -9,7 +9,7 @@ var doctorsSchema = new Schema({
     Speciality : {type : String},
     ClinicID : {type : String},
     Timings : {type : String},
-    Status : {type : String},
+    Status : {type : Boolean},
     Username : {type : String},
     Password : {type : String}
 });

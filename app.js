@@ -73,7 +73,7 @@ io.on('connection', function (socket) {
             if(APIstatus == 200){
                 console.log('Doctor ID :' + data.doctorID + ' Doctor Name : ' + data.doctorFirstName + ' is online');
 
-                socket.emit('doctorStatusMethod',{
+                socket.broadcast.emit('doctorStatusMethod',{
                     doctorID : data.DoctorID,
                     clinicID : data.ClinicID,
                     status : 'Available',
@@ -82,7 +82,7 @@ io.on('connection', function (socket) {
             }
             else{
                 console.log('Doctor change status API error!');
-                socket.emit('doctorStatusMethod',{
+                socket.broadcast.emit('doctorStatusMethod',{
 
                     code : 404
                 });
@@ -100,7 +100,7 @@ io.on('connection', function (socket) {
                 socket.emit('doctor_offline', {
 
                 });
-                socket.sockets.emit('doctorStatusMethod',{
+                socket.broadcast.emit('doctorStatusMethod',{
                     doctorID : data.DoctorID,
                     clinicID : data.ClinicID,
                     status : 'Not Available',
@@ -109,7 +109,7 @@ io.on('connection', function (socket) {
             }
             else{
                 console.log('Doctor change status API error!');
-                socket.sockets.emit('doctorStatusMethod',{
+                socket.broadcast.emit('doctorStatusMethod',{
                     code : 404
                 });
             }

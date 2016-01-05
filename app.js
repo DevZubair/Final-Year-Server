@@ -100,7 +100,7 @@ io.on('connection', function (socket) {
                 socket.emit('doctor_offline', {
 
                 });
-                socket.broadcast.emit('doctorStatusMethod',{
+                socket.sockets.emit('doctorStatusMethod',{
                     doctorID : data.DoctorID,
                     clinicID : data.ClinicID,
                     status : 'Not Available',
@@ -109,7 +109,7 @@ io.on('connection', function (socket) {
             }
             else{
                 console.log('Doctor change status API error!');
-                socket.broadcast.emit('doctorStatusMethod',{
+                socket.sockets.emit('doctorStatusMethod',{
                     code : 404
                 });
             }

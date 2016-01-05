@@ -55,7 +55,7 @@ exports.changeServeNumber = function (DoctorID,ClinicID,serveNumber,callBack) {
         }, function () {
             callBack({
                 code : 200,
-                waiting : appointment[0].WaitingPersons.length
+                waiting : 0
             });
         });
     }

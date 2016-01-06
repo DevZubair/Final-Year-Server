@@ -4,7 +4,15 @@ var express = require('express'),
     Machine = mongoose.model('Machine'),
     Appointment = mongoose.model('Appointment');
 
-exports.changeServeNumber = function (DoctorID,ClinicID,serveNumber,callBack) {
+module.exports = function (app) {
+    app.use('/', router);
+};
+
+router.post('/changeServeNumber', function (req, res, next) {
+
+    var DoctorID = req.body.DoctorID || req.query.DoctorID || req.headers['x-access-DoctorID'],
+        ClinicID  = req.body.ClinicID || req.query.ClinicID || req.headers['x-access-ClinicID'],
+        serveNumber  = req.body.serveNumber || req.query.serveNumber || req.headers['x-access-serveNumber'];
 
     if(serveNumber!=0){
 
@@ -13,8 +21,10 @@ exports.changeServeNumber = function (DoctorID,ClinicID,serveNumber,callBack) {
             function(err,appointment) {
 
                 if (err) {
-                    callBack({
-                        code : 500
+                    res.send({
+                        code: 500,
+                        content: 'Not Found',
+                        msg: 'Internal Server Error'
                     });
                 }
                 else if (appointment[0]) {
@@ -29,34 +39,38 @@ exports.changeServeNumber = function (DoctorID,ClinicID,serveNumber,callBack) {
                         "DateTime": new Date()
 
                     }, function () {
-                        callBack({
-                            code : 200,
-                            waiting : appointment[0].WaitingPersons.length
+                        res.send({
+                            code: 200,
+                            content:  appointment[0].WaitingPersons.length,
+                            msg: 'Success'
                         });
                     });
                 }
                 else{
-                    callBack({
-                        code : 404
+                    res.send({
+                        code: 404,
+                        content:  "Appointment Not found",
+                        msg: 'Appointment Error'
                     });
                 }
             });
     }
-    else{
-        Machine.update({"DoctorID" : DoctorID, "ClinicID" : ClinicID}, {
+    else {
+        Machine.update({"DoctorID": DoctorID, "ClinicID": ClinicID}, {
 
             //This will remove the current served user from waiting members list
 
-            "ClinicID" : ClinicID,
-            "DoctorID" : DoctorID,
-            "CurrentNumber" : serveNumber,
+            "ClinicID": ClinicID,
+            "DoctorID": DoctorID,
+            "CurrentNumber": serveNumber,
             "DateTime": new Date()
 
         }, function () {
-            callBack({
-                code : 200,
-                waiting : 0
+            res.send({
+                code: 200,
+                content: 0,
+                msg: 'Success'
             });
         });
     }
-};
+});

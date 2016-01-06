@@ -23,7 +23,7 @@ models.forEach(function (model) {
 
 require('./config/express')(app, config);
 
-var changeStatus = require('./app/controllers/changeDoctorStatus.js'),
+var changeStatus = require('./app/controllers/changeDoctorStatusAPI.js'),
     changeServe = require('./app/controllers/changeServeNumber.js');
 
 io.on('connection', function (socket) {
@@ -41,7 +41,7 @@ io.on('connection', function (socket) {
                 console.log("++++++ NOW SERVING +++++");
                 console.log("--------- " + onlineData.nowServing + "----------");
 
-                socket.emit('device_active', {
+                socket.broadcast.emit('device_active', {
                     clinicID: onlineData.clinicID,
                     doctorID : onlineData.doctorID,
                     nowServing : onlineData.nowServing,
@@ -52,7 +52,7 @@ io.on('connection', function (socket) {
             }
             else{
                 console.log('Pulse change number API error!');
-                socket.emit('device_active', {
+                socket.broadcast.emit('device_active', {
                     dateTime : new Date(),
                     code : 404
                 });
@@ -69,50 +69,24 @@ io.on('connection', function (socket) {
 
     socket.on('connectedDoctor', function (data) {
 
-        changeStatus.changeDoctorStatus(data.doctorID,data.clinicID,function(APIstatus){
-            if(APIstatus == 200){
-                console.log('Doctor ID :' + data.doctorID + ' Doctor Name : ' + data.doctorFirstName + ' is online');
+        console.log('Doctor ID :' + data.doctorID + ' Doctor Name : ' + data.doctorFirstName + ' is online');
 
-                socket.broadcast.emit('doctorStatusMethod',{
-                    doctorID : data.DoctorID,
-                    clinicID : data.ClinicID,
-                    status : 'Available',
-                    code : 200
-                });
-            }
-            else{
-                console.log('Doctor change status API error!');
-                socket.broadcast.emit('doctorStatusMethod',{
-
-                    code : 404
-                });
-            }
+        socket.broadcast.emit('doctorOnlineStatus',{
+            doctorID : data.doctorID,
+            clinicID : data.clinicID,
+            status : 'Available'
         });
     });
 
     socket.on('doctor_offline', function(data) {
 
         console.log("----------- doctor_offline -------------");
+        console.log('Doctor ID :' + data.doctorID + ' Doctor Name : ' + data.doctorFirstName + ' is offline');
 
-        changeStatus.changeDoctorStatus(data.doctorID,data.clinicID,function(APIstatus){
-            if(APIstatus == 200){
-                console.log('Doctor ID :' + data.doctorID + ' Doctor Name : ' + data.doctorFirstName + ' is offline');
-                socket.emit('doctor_offline', {
-
-                });
-                socket.broadcast.emit('doctorStatusMethod',{
-                    doctorID : data.DoctorID,
-                    clinicID : data.ClinicID,
-                    status : 'Not Available',
-                    code : 200
-                });
-            }
-            else{
-                console.log('Doctor change status API error!');
-                socket.broadcast.emit('doctorStatusMethod',{
-                    code : 404
-                });
-            }
+        socket.broadcast.emit('doctorOfflineStatus',{
+            doctorID : data.doctorID,
+            clinicID : data.clinicID,
+            status : 'Not Available'
         });
     });
 });

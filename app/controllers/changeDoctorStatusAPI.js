@@ -3,7 +3,14 @@ var express = require('express'),
     mongoose     = require('mongoose'),
     Doctor = mongoose.model('Doctor');
 
-exports.changeDoctorStatus = function (DoctorID,ClinicID,callBack) {
+module.exports = function (app) {
+    app.use('/', router);
+};
+
+router.post('/changeDoctorStatus', function (req, res, next) {
+
+    var DoctorID = req.body.DoctorID || req.query.DoctorID || req.headers['x-access-DoctorID'],
+        ClinicID  = req.body.ClinicID || req.query.ClinicID || req.headers['x-access-ClinicID'];
 
     Doctor.find({_id : DoctorID, ClinicID : ClinicID},{__v:0},
 
@@ -12,8 +19,8 @@ exports.changeDoctorStatus = function (DoctorID,ClinicID,callBack) {
             if(err){
                 res.send({
                     code: 500,
-                    content : 'Internal Server Error',
-                    msg: 'API not called properly'
+                    content: 'Not Found',
+                    msg: 'Internal Server Error'
                 });
             }
             else if(doctor!=''){
@@ -27,12 +34,20 @@ exports.changeDoctorStatus = function (DoctorID,ClinicID,callBack) {
 
                 }, function () {
                     console.log('Doctor Status Update');
-                    callBack(200);
+                    res.send({
+                        code: 200,
+                        content: 'Success',
+                        msg: 'Doctor Status Update'
+                    });
                 });
             }
             else {
-                callBack(404);
+                res.send({
+                    code: 404,
+                    content: 'Not Found',
+                    msg: 'Doctor Not Found'
+                });
                 console.log('No Doctor found');
             }
         })
-};
+});

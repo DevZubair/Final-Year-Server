@@ -93,6 +93,18 @@ module.exports = function(app, config) {
     require(controller)(app);
   });
 
+  var controllers14 = glob.sync(config.root + '/app/controllers/changeDoctorStatusAPI.js');
+
+  controllers14.forEach(function (controller) {
+    require(controller)(app);
+  });
+
+  var controllers15 = glob.sync(config.root + '/app/controllers/changeServeNumberAPI.js');
+
+  controllers15.forEach(function (controller) {
+    require(controller)(app);
+  });
+
   app.use(function (req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;

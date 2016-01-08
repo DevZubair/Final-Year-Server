@@ -18,9 +18,11 @@ router.post('/addAppointment', function (req, res, next) {
         PatientAge = req.body.PatientAge || req.query.PatientAge || req.headers['x-access-PatientAge'],
         ClinicID = req.body.ClinicID || req.query.ClinicID || req.headers['x-access-ClinicID'],
         DoctorID = req.body.DoctorID || req.query.DoctorID || req.headers['x-access-DoctorID'],
+        DoctorName = req.body.DoctorName || req.query.DoctorName || req.headers['x-access-DoctorName'],
+        ClinicName = req.body.ClinicName || req.query.ClinicName || req.headers['x-access-ClinicName'],
         Gender = req.body.Gender || req.query.Gender || req.headers['x-access-Gender'];
 
-    if(MobileID && PatientFirstName && PatientLastName && ClinicID && DoctorID)
+    if(MobileID && PatientFirstName && PatientLastName && ClinicID && DoctorID && DoctorName && ClinicName)
     {
         Machine.findOne({ClinicID : ClinicID, DoctorID : DoctorID}, function (err,machine) {
             if (err) {
@@ -57,6 +59,10 @@ router.post('/addAppointment', function (req, res, next) {
                             Gender : Gender,
                             ClinicID : ClinicID,
                             DoctorID : DoctorID,
+                            DoctorName : DoctorName,
+                            ClinicName : ClinicName,
+                            DeviceID : machine._id,
+                            DeviceNumber : machine.CurrentNumber,
                             DateTime : new Date()
                         });
 
@@ -109,6 +115,10 @@ router.post('/addAppointment', function (req, res, next) {
                             PatientAge : PatientAge,
                             ClinicID : ClinicID,
                             DoctorID : DoctorID,
+                            DoctorName : DoctorName,
+                            ClinicName : ClinicName,
+                            DeviceID : machine._id,
+                            DeviceNumber : machine.CurrentNumber,
                             DateTime : new Date()
                         });
 

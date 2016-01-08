@@ -23,9 +23,6 @@ models.forEach(function (model) {
 
 require('./config/express')(app, config);
 
-var changeStatus = require('./app/controllers/changeDoctorStatusAPI.js'),
-    changeServe = require('./app/controllers/changeServeNumber.js');
-
 io.on('connection', function (socket) {
 
     //When User Connected
@@ -33,30 +30,16 @@ io.on('connection', function (socket) {
 
     socket.on('device_active', function(onlineData) {
 
-        console.log("Device of Clinic#" + onlineData.clinicID + "and Doctor#" + onlineData.doctorID + ",active method is called");
+        console.log("++++++ NOW SERVING +++++");
+        console.log("--------- " + onlineData.nowServing + "----------");
 
-        changeServe.changeServeNumber(onlineData.doctorID, onlineData.clinicID, onlineData.nowServing, function (APIstatus) {
-
-            if(APIstatus.code == 200){
-                console.log("++++++ NOW SERVING +++++");
-                console.log("--------- " + onlineData.nowServing + "----------");
-
-                socket.broadcast.emit('device_active', {
-                    clinicID: onlineData.clinicID,
-                    doctorID : onlineData.doctorID,
-                    nowServing : onlineData.nowServing,
-                    inWaiting : APIstatus.waiting,
-                    dateTime : new Date(),
-                    code : 200
-                });
-            }
-            else{
-                console.log('Pulse change number API error!');
-                socket.broadcast.emit('device_active', {
-                    dateTime : new Date(),
-                    code : 404
-                });
-            }
+        socket.broadcast.emit('device_active', {
+            clinicID: onlineData.clinicID,
+            doctorID : onlineData.doctorID,
+            nowServing : onlineData.nowServing,
+            inWaiting : onlineData.inWaiting,
+            dateTime : new Date(),
+            code : 200
         });
     });
 

@@ -11,6 +11,10 @@ var appointmentSchema = new Schema({
     Gender : {type : String},
     ClinicID : {type : String},
     DoctorID : {type : String},
+    DoctorName : {type : String},
+    ClinicName : {type : String},
+    DeviceNumber : {type : String},
+    DeviceID : {type : String},
     DateTime : {type : Date}
 });
 

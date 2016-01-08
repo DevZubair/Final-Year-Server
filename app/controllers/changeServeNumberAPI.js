@@ -39,11 +39,32 @@ router.post('/changeServeNumber', function (req, res, next) {
                         "DateTime": new Date()
 
                     }, function () {
-                        res.send({
-                            code: 200,
-                            content:  appointment[0].WaitingPersons.length,
-                            msg: 'Success'
-                        });
+                        Machine.find({DoctorID : DoctorID, ClinicID : ClinicID},{__v:0},
+
+                            function(err,machine) {
+
+                                if (err) {
+                                    res.send({
+                                        code: 500,
+                                        content: 'Not Found',
+                                        msg: 'Internal Server Error'
+                                    });
+                                }
+                                else if (machine[0]) {
+                                    res.send({
+                                        code: 200,
+                                        content:  machine[0].WaitingPersons.length,
+                                        msg: 'Success'
+                                    });
+                                }
+                                else {
+                                    res.send({
+                                        code: 404,
+                                        content:  'Not found',
+                                        msg: 'Device Not found'
+                                    });
+                                }
+                            });
                     });
                 }
                 else{

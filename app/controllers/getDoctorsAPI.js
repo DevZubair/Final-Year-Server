@@ -22,7 +22,7 @@ router.post('/getClinicDoctors', function (req, res, next) {
                     msg: 'API not called properly'
                 });
             }
-            else if(allDoctors!=null){
+            else if(allDoctors[0]!=''){
                 res.send({
                     code: 200,
                     content : allDoctors,

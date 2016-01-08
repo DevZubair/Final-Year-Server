@@ -14,9 +14,9 @@ router.post('/changeServeNumber', function (req, res, next) {
         ClinicID  = req.body.ClinicID || req.query.ClinicID || req.headers['x-access-ClinicID'],
         serveNumber  = req.body.serveNumber || req.query.serveNumber || req.headers['x-access-serveNumber'];
 
-    if(serveNumber!=0){
+    if(req.body.serveNumber!=0){
 
-        Appointment.find({DoctorID : DoctorID, ClinicID : ClinicID, AppointmentNumber : serveNumber},{__v:0},
+        Appointment.find({DoctorID : DoctorID, ClinicID : ClinicID, AppointmentNumber : req.body.serveNumber},{__v:0},
 
             function(err,appointment) {
 
@@ -34,7 +34,7 @@ router.post('/changeServeNumber', function (req, res, next) {
 
                         "ClinicID" : ClinicID,
                         "DoctorID" : DoctorID,
-                        "CurrentNumber" : serveNumber,
+                        "CurrentNumber" : req.body.serveNumber,
                         $pull: { WaitingPersons: appointment[0].MobileID },
                         "DateTime": new Date()
 
@@ -76,14 +76,14 @@ router.post('/changeServeNumber', function (req, res, next) {
                 }
             });
     }
-    else {
+    else{
         Machine.update({"DoctorID": DoctorID, "ClinicID": ClinicID}, {
 
             //This will remove the current served user from waiting members list
 
             "ClinicID": ClinicID,
             "DoctorID": DoctorID,
-            "CurrentNumber": serveNumber,
+            "CurrentNumber": req.body.serveNumber,
             "DateTime": new Date()
 
         }, function () {

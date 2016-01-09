@@ -1,7 +1,7 @@
 var express = require('express'),
     router    = express.Router(),
     mongoose     = require('mongoose'),
-    User = mongoose.model('User');
+    Appointment = mongoose.model('Appointment');
 
 module.exports = function (app) {
     app.use('/', router);
@@ -9,7 +9,7 @@ module.exports = function (app) {
 
 router.get('/getAllUsers', function (req, res, next) {
 
-    User.find({},{__v:0},
+    Appointment.find({},{__v:0},
 
         function(err,allUsers) {
 

@@ -2,7 +2,8 @@ var express  = require('express'),
     router   = express.Router(),
     mongoose = require('mongoose'),
     Doctor   = mongoose.model('Doctor'),
-    Clinic   = mongoose.model('Clinic');
+    Clinic   = mongoose.model('Clinic'),
+    Machine   = mongoose.model('Machine');
 
 module.exports = function (app) {
     app.use('/', router);
@@ -70,11 +71,29 @@ router.post('/addDoctor', function (req, res, next) {
                                 Clinic.update({"_id" : ClinicID},{
                                     $addToSet: { Doctors: data.id }
                                 }, function () {
-                                    res.send({
-                                        code : 200,
-                                        content : 'Success',
-                                        msg : 'Doctor is saved in the db'
+                                    var machine_info=new Machine({
+                                        ClinicID : ClinicID,
+                                        DoctorID : data.id,
+                                        DateTime : new Date(),
+                                        CurrentNumber : 0,
+                                        WaitingPersons : []
                                     });
+                                    machine_info.save(function(error,data) {
+                                        if (error) {
+                                            res.send({
+                                                code: 400,
+                                                content: 'Bad Request',
+                                                msg: 'Device is not saved in the db'
+                                            });
+                                        }
+                                        else {
+                                            res.send({
+                                                code : 200,
+                                                content : 'Success',
+                                                msg : 'Device is saved in the db'
+                                            });
+                                        }
+                                    })
                                 });
                             }
                         })

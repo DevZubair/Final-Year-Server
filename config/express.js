@@ -37,11 +37,7 @@ module.exports = function(app, config) {
   controllers1.forEach(function (controller) {
     require(controller)(app);
   });
-  var controllers2 = glob.sync(config.root + '/app/controllers/registerMobileAPI.js');
 
-  controllers2.forEach(function (controller) {
-    require(controller)(app);
-  });
   var controllers3 = glob.sync(config.root + '/app/controllers/addAppointmentAPI.js');
 
   controllers3.forEach(function (controller) {

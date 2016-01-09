@@ -22,7 +22,7 @@ router.post('/getAllAppointments', function (req, res, next) {
                     msg: 'API not called properly'
                 });
             }
-            else if(allAppointments[0]!=""){
+            else if(allAppointments[0]!=undefined){
 
                 res.send({
                     code: 200,

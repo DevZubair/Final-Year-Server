@@ -91,74 +91,10 @@ router.post('/addAppointment', function (req, res, next) {
                 })
             }
             else {
-                Appointment.findOne({MobileID : MobileID, ClinicID : ClinicID, DoctorID : DoctorID}, function (err,appointment) {
-                    if (err) {
-                        res.send({
-                            code: 500,
-                            content: 'Not Found',
-                            msg: 'Internal Server Error'
-                        });
-                    }
-                    else if (appointment != null) {
-                        res.send({
-                            code: 400,
-                            content: 'Appointment Found',
-                            msg: 'Appointment is already taken from this user'
-                        });
-                    }
-                    else{
-                        var appointment_info=new Appointment({
-                            MobileID : MobileID,
-                            AppointmentNumber : 1,
-                            PatientFirstName : PatientFirstName,
-                            PatientLastName : PatientLastName,
-                            PatientAge : PatientAge,
-                            ClinicID : ClinicID,
-                            DoctorID : DoctorID,
-                            DoctorName : DoctorName,
-                            ClinicName : ClinicName,
-                            DeviceID : machine._id,
-                            DeviceNumber : machine.CurrentNumber,
-                            DateTime : new Date()
-                        });
-
-                        appointment_info.save(function(error,data){
-                            if(error){
-                                res.send({
-                                    code : 400,
-                                    content : 'Bad Request',
-                                    msg : 'Appointment is not saved in the db'
-                                });
-                            }
-                            else{
-                                var machine_info=new Machine({
-                                    ClinicID : ClinicID,
-                                    DoctorID : DoctorID,
-                                    DateTime : new Date(),
-                                    CurrentNumber : 1,
-                                    WaitingPersons : [MobileID]
-                                });
-
-                                machine_info.save(function(error,data) {
-                                    if (error) {
-                                        res.send({
-                                            code: 400,
-                                            content: 'Bad Request',
-                                            msg: 'Appointment is not saved in the db'
-                                        });
-                                    }
-                                    else {
-                                        res.send({
-                                            code: 200,
-                                            content: 'Success',
-                                            AppointmentNumber : 1,
-                                            msg: 'Appointment is saved in the db'
-                                        });
-                                    }
-                                })
-                            }
-                        })
-                    }
+                res.send({
+                    code : 400,
+                    content : 'Bad Request',
+                    msg : 'Appointment is not saved in the db'
                 });
             }
         });

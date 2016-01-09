@@ -33,7 +33,7 @@ io.on('connection', function (socket) {
         console.log("++++++ NOW SERVING +++++");
         console.log("--------- " + onlineData.nowServing + "----------");
 
-        socket.broadcast.emit('device_active', {
+        io.sockets.emit('device_active', {
             clinicID: onlineData.clinicID,
             doctorID : onlineData.doctorID,
             nowServing : onlineData.nowServing,
@@ -54,7 +54,7 @@ io.on('connection', function (socket) {
 
         console.log('Doctor ID :' + data.doctorID + ' Doctor Name : ' + data.doctorFirstName + ' is online');
 
-        socket.broadcast.emit('doctorOnlineStatus',{
+        io.sockets.emit('doctorOnlineStatus',{
             doctorID : data.doctorID,
             clinicID : data.clinicID,
             status : 'Available'
@@ -66,7 +66,7 @@ io.on('connection', function (socket) {
         console.log("----------- doctor_offline -------------");
         console.log('Doctor ID :' + data.doctorID + ' Doctor Name : ' + data.doctorFirstName + ' is offline');
 
-        socket.broadcast.emit('doctorOfflineStatus',{
+        io.sockets.emit('doctorOfflineStatus',{
             doctorID : data.doctorID,
             clinicID : data.clinicID,
             status : 'Not Available'

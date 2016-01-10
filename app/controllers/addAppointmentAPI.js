@@ -63,9 +63,11 @@ router.post('/addAppointment', function (req, res, next) {
                             ClinicName : ClinicName,
                             DeviceID : machine._id,
                             DeviceNumber : machine.CurrentNumber,
+                            Past : false,
+                            Reviews : {stars : 0, comments : ""},
+                            Location : {latit :"" , longit : ""},
                             DateTime : new Date()
                         });
-
                         appointment_info.save(function(error,data){
                             if(error){
                                 res.send({
@@ -94,7 +96,7 @@ router.post('/addAppointment', function (req, res, next) {
                 res.send({
                     code : 400,
                     content : 'Bad Request',
-                    msg : 'Appointment is not saved in the db'
+                    msg : 'Device not found'
                 });
             }
         });

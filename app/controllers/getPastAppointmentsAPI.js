@@ -7,13 +7,13 @@ module.exports = function (app) {
     app.use('/', router);
 };
 
-router.post('/getAllAppointments', function (req, res, next) {
+router.post('/getPastAppointments', function (req, res, next) {
 
     var MobileID = req.body.MobileID || req.query.MobileID || req.headers['x-access-MobileID'];
     var today = new Date();
     today.setHours(0,0,0,0);
 
-    Appointment.find({MobileID : MobileID, DateTime : {"$gte" : today } },{__v:0},
+    Appointment.find({MobileID : MobileID, Past : true, DateTime : {"$lt" : today }},{__v:0},
 
         function(err,allAppointments) {
 

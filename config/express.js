@@ -101,6 +101,12 @@ module.exports = function(app, config) {
     require(controller)(app);
   });
 
+  var controllers16 = glob.sync(config.root + '/app/controllers/getPastAppointmentsAPI.js');
+
+  controllers16.forEach(function (controller) {
+    require(controller)(app);
+  });
+
   app.use(function (req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;

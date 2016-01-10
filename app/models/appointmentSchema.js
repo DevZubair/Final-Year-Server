@@ -16,8 +16,9 @@ var appointmentSchema = new Schema({
     DeviceNumber : {type : String},
     DeviceID : {type : String},
     DateTime : {type : Date},
-    Reviews : [{stars : {type : Number}, comments : {type : String}}],
-    Location : {latit :{type : String} , longit : {type : String}}
+    Reviews : {stars : {type : Number}, comments : {type : String}},
+    Location : {latit :{type : String} , longit : {type : String}},
+    Past : {type : Boolean}
 });
 
 mongoose.model('Appointment', appointmentSchema);

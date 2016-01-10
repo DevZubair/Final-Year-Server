@@ -53,7 +53,6 @@ router.post('/changeServeNumber', function (req, res, next) {
                                 "ClinicID" : ClinicID,
                                 "DoctorID" : DoctorID,
                                 "CurrentNumber" : req.body.serveNumber,
-                                $pull: { WaitingPersons: appointment[0].MobileID },
                                 "DateTime": new Date()
 
                             }, function () {

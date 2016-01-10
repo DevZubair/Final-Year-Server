@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1393fdb5-9141-4743-8998-b50094cdffc4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/getPastAppointmentsAPI.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/addAppointmentAPI.js" afterPath="$PROJECT_DIR$/app/controllers/addAppointmentAPI.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/appointmentSchema.js" afterPath="$PROJECT_DIR$/app/models/appointmentSchema.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/changeServeNumberAPI.js" afterPath="$PROJECT_DIR$/app/controllers/changeServeNumberAPI.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/express.js" afterPath="$PROJECT_DIR$/config/express.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/getAllAppointmentsAPI.js" afterPath="$PROJECT_DIR$/app/controllers/getAllAppointmentsAPI.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Server.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,21 +33,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="getAllAppointmentsAPI.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/controllers/getAllAppointmentsAPI.js">
+      <file leaf-file-name="changeServeNumberAPI.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/controllers/changeServeNumberAPI.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.41404358">
-              <caret line="13" column="28" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="getPastAppointmentsAPI.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/getPastAppointmentsAPI.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+            <state vertical-scroll-proportion="-0.070217915">
+              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -103,11 +87,11 @@
         <option value="$PROJECT_DIR$/app/models/usersSchema.js" />
         <option value="$PROJECT_DIR$/app/controllers/addAppointmentAPI.js" />
         <option value="$PROJECT_DIR$/app/models/appointmentSchema.js" />
-        <option value="$PROJECT_DIR$/app/controllers/changeServeNumberAPI.js" />
         <option value="$PROJECT_DIR$/app/controllers/getPastAppointments.js" />
         <option value="$PROJECT_DIR$/config/express.js" />
         <option value="$PROJECT_DIR$/app/controllers/getAllAppointmentsAPI.js" />
         <option value="$PROJECT_DIR$/app/controllers/getPastAppointmentsAPI.js" />
+        <option value="$PROJECT_DIR$/app/controllers/changeServeNumberAPI.js" />
       </list>
     </option>
   </component>
@@ -655,13 +639,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/getMachineStatusAPI.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/doctorsSchema.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6174334">
@@ -674,14 +651,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="60" column="25" selection-start-line="60" selection-start-column="25" selection-end-line="60" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/changeServeNumberAPI.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3292978">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -710,18 +679,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/getPastAppointmentsAPI.js">
+    <entry file="file://$PROJECT_DIR$/app/controllers/getMachineStatusAPI.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.4116223">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/getAllAppointmentsAPI.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41404358">
-          <caret line="13" column="28" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
+        <state vertical-scroll-proportion="-0.44067797">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/getPastAppointmentsAPI.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.44067797">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/changeServeNumberAPI.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.070217915">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding />
         </state>
       </provider>

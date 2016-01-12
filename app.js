@@ -23,6 +23,8 @@ models.forEach(function (model) {
 
 require('./config/express')(app, config);
 
+var deleteAppoint = require('./app/controllers/deletePreviousAppointments.js');
+
 io.on('connection', function (socket) {
 
     //When User Connected
@@ -73,5 +75,20 @@ io.on('connection', function (socket) {
         });
     });
 });
+
+setInterval(function () {
+    var date = new Date();
+    if (date.getHours() === 0 && date.getMinutes === 0 && date.getSeconds == 0) {
+        //delete all appointments
+        deleteAppoint.deleteAppointments(function (code) {
+            if(code == 200){
+                console.log('Appointments are empty');
+            }
+            else{
+                console.log('Appointments are not empty. API Error');
+            }
+        })
+    }
+}, 1000);
 //app.listen(config.port);
 console.log('Server is running at ' + config.port);

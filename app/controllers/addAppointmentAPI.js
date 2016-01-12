@@ -20,7 +20,9 @@ router.post('/addAppointment', function (req, res, next) {
         DoctorID = req.body.DoctorID || req.query.DoctorID || req.headers['x-access-DoctorID'],
         DoctorName = req.body.DoctorName || req.query.DoctorName || req.headers['x-access-DoctorName'],
         ClinicName = req.body.ClinicName || req.query.ClinicName || req.headers['x-access-ClinicName'],
-        Gender = req.body.Gender || req.query.Gender || req.headers['x-access-Gender'];
+        Gender = req.body.Gender || req.query.Gender || req.headers['x-access-Gender'],
+        today = new Date();
+        today.setHours(0,0,0,0);
 
     if(MobileID && PatientFirstName && PatientLastName && ClinicID && DoctorID && DoctorName && ClinicName)
     {
@@ -34,7 +36,7 @@ router.post('/addAppointment', function (req, res, next) {
             }
             else if (machine[0] != '') {
 
-                Appointment.findOne({MobileID : MobileID, ClinicID : ClinicID, DoctorID : DoctorID}, function (err,appointment) {
+                Appointment.findOne({MobileID : MobileID, ClinicID : ClinicID, DoctorID : DoctorID, DateTime : {"$gte" : today }}, function (err,appointment) {
                     if (err) {
                         res.send({
                             code: 500,

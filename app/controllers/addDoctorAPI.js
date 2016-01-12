@@ -17,8 +17,8 @@ router.post('/addDoctor', function (req, res, next) {
         Speciality      = req.body.Speciality || req.query.Speciality || req.headers['x-access-Speciality'],
         ClinicID        = req.body.ClinicID || req.query.ClinicID || req.headers['x-access-ClinicID'],
         Timings         = req.body.Timings || req.query.Timings || req.headers['x-access-Timings'],
-        Password         = req.body.Password || req.query.Password || req.headers['x-access-Password'],
-        Username         = req.body.Username || req.query.Username || req.headers['x-access-Username'];
+        Password        = req.body.Password || req.query.Password || req.headers['x-access-Password'],
+        Username        = req.body.Username || req.query.Username || req.headers['x-access-Username'];
 
     if(DoctorFirstName && DoctorLastName && ClinicID && Timings && Password && Username)
     {
@@ -76,6 +76,7 @@ router.post('/addDoctor', function (req, res, next) {
                                         DoctorID : data.id,
                                         DateTime : new Date(),
                                         CurrentNumber : 0,
+                                        TotalAppointments : 0,
                                         WaitingPersons : []
                                     });
                                     machine_info.save(function(error,data) {

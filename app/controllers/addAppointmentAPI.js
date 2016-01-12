@@ -54,7 +54,7 @@ router.post('/addAppointment', function (req, res, next) {
                     else{
                         var appointment_info=new Appointment({
                             MobileID : MobileID,
-                            AppointmentNumber : (machine.CurrentNumber + machine.WaitingPersons.length) + 1,
+                            AppointmentNumber : machine.TotalAppointments + 1,
                             PatientFirstName : PatientFirstName,
                             PatientLastName : PatientLastName,
                             PatientAge : PatientAge,
@@ -68,6 +68,7 @@ router.post('/addAppointment', function (req, res, next) {
                             Past : false,
                             Reviews : {stars : 0, comments : ""},
                             Location : {latit :"" , longit : ""},
+                            rescheduleAttempt : 0,
                             DateTime : new Date()
                         });
                         appointment_info.save(function(error,data){
@@ -80,12 +81,13 @@ router.post('/addAppointment', function (req, res, next) {
                             }
                             else{
                                 Machine.update({"_id" : machine.id},{
-                                    $addToSet: { WaitingPersons: MobileID}
+                                    $addToSet: { WaitingPersons: MobileID},
+                                    "TotalAppointments" : machine.TotalAppointments + 1
                                 }, function () {
                                     res.send({
                                         code : 200,
                                         content : 'Success',
-                                        AppointmentNumber : (machine.CurrentNumber + machine.WaitingPersons.length) + 1,
+                                        AppointmentNumber : machine.TotalAppointments + 1,
                                         msg : 'Appointment is saved in the db'
                                     });
                                 });

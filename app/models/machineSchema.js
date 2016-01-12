@@ -7,6 +7,7 @@ var machineSchema = new Schema({
     DoctorID : {type : String},
     CurrentNumber : {type : Number},
     WaitingPersons : [],
+    TotalAppointments : {type : Number},
     DateTime : {type : Date}
 });
 

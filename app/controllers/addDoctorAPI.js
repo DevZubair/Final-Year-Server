@@ -31,7 +31,7 @@ router.post('/addDoctor', function (req, res, next) {
                 });
             }
             else if (clinic != null) {
-                Doctor.findOne({DoctorFirstName : DoctorFirstName, DoctorLastName : DoctorLastName}, function (err,doctor) {
+                Doctor.findOne({Username : Username}, function (err,doctor) {
                     if (err) {
                         res.send({
                             code: 500,

@@ -18,7 +18,7 @@ router.post('/changeServeNumber', function (req, res, next) {
 
     if(req.body.serveNumber!=0){
 
-        Appointment.find({DoctorID : DoctorID, ClinicID : ClinicID, AppointmentNumber : req.body.serveNumber, DateTime : {"$gte" : today }},{__v:0},
+        Appointment.find({DoctorID : DoctorID, ClinicID : ClinicID, DateTime : {"$gte" : today }},{__v:0},
 
             function(err,appointment) {
 
@@ -39,7 +39,7 @@ router.post('/changeServeNumber', function (req, res, next) {
                         "DateTime": new Date()
 
                     },{multi : true}, function () {
-                        Appointment.update({"DoctorID" : DoctorID, "ClinicID" : ClinicID, DateTime : {"$gte" : today }, AppointmentNumber : req.body.serveNumber}, {
+                        Appointment.findOneAndUpdate({"DoctorID" : DoctorID, "ClinicID" : ClinicID, DateTime : {"$gte" : today }, AppointmentNumber : req.body.serveNumber}, {
 
                             //This will remove the current served user from waiting members list
                             "ClinicID" : ClinicID,

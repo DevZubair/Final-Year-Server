@@ -54,7 +54,7 @@ router.post('/addAppointment', function (req, res, next) {
                     else{
                         var appointment_info=new Appointment({
                             MobileID : MobileID,
-                            AppointmentNumber : machine.TotalAppointments + 1,
+                            AppointmentNumber : machine[0].TotalAppointments + 1,
                             PatientFirstName : PatientFirstName,
                             PatientLastName : PatientLastName,
                             PatientAge : PatientAge,
@@ -63,8 +63,8 @@ router.post('/addAppointment', function (req, res, next) {
                             DoctorID : DoctorID,
                             DoctorName : DoctorName,
                             ClinicName : ClinicName,
-                            DeviceID : machine._id,
-                            DeviceNumber : machine.CurrentNumber,
+                            DeviceID : machine[0]._id,
+                            DeviceNumber : machine[0].CurrentNumber,
                             Past : false,
                             Reviews : {stars : 0, comments : ""},
                             Location : {latit :"" , longit : ""},

@@ -124,6 +124,11 @@ module.exports = function(app, config) {
   controllers19.forEach(function (controller) {
     require(controller)(app);
   });
+  var controllers20 = glob.sync(config.root + '/app/controllers/addReviewsAPI.js');
+
+  controllers20.forEach(function (controller) {
+    require(controller)(app);
+  });
 
   app.use(function (req, res, next) {
     var err = new Error('Not Found');

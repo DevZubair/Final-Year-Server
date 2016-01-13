@@ -45,14 +45,14 @@ router.post('/rescheduleNumber', function (req, res, next) {
                                     //This will remove the current served user from waiting members list
                                     "ClinicID" : ClinicID,
                                     "DoctorID" : DoctorID,
-                                    "DeviceNumber" : machine.TotalAppointments + 1,
+                                    "DeviceNumber" : machine[0].TotalAppointments + 1,
                                     "rescheduleAttempt" : 1,
                                     "DateTime": new Date()
 
                                 },function () {
                                     res.send({
                                         code: 200,
-                                        content:  machine.TotalAppointments + 1,
+                                        content:  machine[0].TotalAppointments + 1,
                                         msg: 'Successfully rescheduled the number'
                                     });
                                 });

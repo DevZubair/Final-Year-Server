@@ -27,7 +27,7 @@ router.post('/rescheduleNumber', function (req, res, next) {
                         msg: 'Internal Server Error'
                     });
                 }
-                else if (appointment[0]) {
+                else if (appointment[0] != '') {
                     Machine.find({DoctorID : DoctorID, ClinicID : ClinicID},{__v:0},
 
                         function(err,machine) {
@@ -39,7 +39,7 @@ router.post('/rescheduleNumber', function (req, res, next) {
                                     msg: 'Internal Server Error'
                                 });
                             }
-                            else if (machine[0]) {
+                            else if (machine[0] != '') {
                                 Appointment.update({"DoctorID" : DoctorID, "ClinicID" : ClinicID}, {
 
                                     //This will remove the current served user from waiting members list

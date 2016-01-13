@@ -18,7 +18,7 @@ router.post('/changeServeNumber', function (req, res, next) {
 
     if(req.body.serveNumber!=0){
 
-        Appointment.find({DoctorID : DoctorID, ClinicID : ClinicID, AppointmentNumber : req.body.serveNumber},{__v:0},
+        Appointment.find({DoctorID : DoctorID, ClinicID : ClinicID, AppointmentNumber : req.body.serveNumber, DateTime : {"$gte" : today }},{__v:0},
 
             function(err,appointment) {
 

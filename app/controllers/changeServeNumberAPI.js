@@ -30,7 +30,7 @@ router.post('/changeServeNumber', function (req, res, next) {
                     });
                 }
                 else if (appointment[0]) {
-                    Appointment.update({"DoctorID" : DoctorID, "ClinicID" : ClinicID, DateTime : {"$lt" : today }}, {
+                    Appointment.update({"DoctorID" : DoctorID, "ClinicID" : ClinicID, DateTime : {"$gte" : today }}, {
 
                         //This will remove the current served user from waiting members list
                         "ClinicID" : ClinicID,
@@ -39,7 +39,7 @@ router.post('/changeServeNumber', function (req, res, next) {
                         "DateTime": new Date()
 
                     },{multi : true}, function () {
-                        Appointment.update({"DoctorID" : DoctorID, "ClinicID" : ClinicID, AppointmentNumber : req.body.serveNumber}, {
+                        Appointment.update({"DoctorID" : DoctorID, "ClinicID" : ClinicID, DateTime : {"$gte" : today }, AppointmentNumber : req.body.serveNumber}, {
 
                             //This will remove the current served user from waiting members list
                             "ClinicID" : ClinicID,
@@ -99,7 +99,7 @@ router.post('/changeServeNumber', function (req, res, next) {
             });
     }
     else{
-        Appointment.update({"DoctorID" : DoctorID, "ClinicID" : ClinicID}, {
+        Appointment.update({"DoctorID" : DoctorID, "ClinicID" : ClinicID, DateTime : {"$gte" : today }}, {
 
             //This will remove the current served user from waiting members list
             "ClinicID" : ClinicID,

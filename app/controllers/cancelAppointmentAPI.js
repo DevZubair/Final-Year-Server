@@ -10,13 +10,17 @@ module.exports = function (app) {
 
 router.post('/cancelNumber', function (req, res, next) {
 
-    var DoctorID = req.body.DoctorID || req.query.DoctorID || req.headers['x-access-DoctorID'],
-        ClinicID  = req.body.ClinicID || req.query.ClinicID || req.headers['x-access-ClinicID'],
-        MobileID  = req.body.MobileID || req.query.MobileID || req.headers['x-access-MobileID'];
+    var AppointID = req.body.AppointID || req.query.AppointID || req.headers['x-access-AppointID'],
+        ClinicID = req.body.ClinicID || req.query.ClinicID || req.headers['x-access-ClinicID'],
+        DoctorID = req.body.DoctorID || req.query.DoctorID || req.headers['x-access-DoctorID'],
+        MobileID = req.body.MobileID || req.query.MobileID || req.headers['x-access-MobileID'];
 
-    if(DoctorID && ClinicID && MobileID){
+    var today = new Date();
+    today.setHours(0,0,0,0);
 
-        Appointment.find({DoctorID : DoctorID, ClinicID : ClinicID, MobileID : MobileID},{__v:0},
+    if(AppointID && ClinicID && DoctorID && MobileID){
+
+        Appointment.find({_id : AppointID},{__v:0},
 
             function(err,appointment) {
 
@@ -36,7 +40,7 @@ router.post('/cancelNumber', function (req, res, next) {
 
                     },function () {
 
-                        Appointment.remove({"DoctorID" : DoctorID, "ClinicID" : ClinicID, MobileID : MobileID},function () {
+                        Appointment.remove({"_id":AppointID},function () {
                             res.send({
                                 code: 200,
                                 content:  'Appointment deleted',

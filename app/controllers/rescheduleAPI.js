@@ -12,11 +12,13 @@ router.post('/rescheduleNumber', function (req, res, next) {
 
     var DoctorID = req.body.DoctorID || req.query.DoctorID || req.headers['x-access-DoctorID'],
         ClinicID  = req.body.ClinicID || req.query.ClinicID || req.headers['x-access-ClinicID'],
-        MobileID  = req.body.MobileID || req.query.MobileID || req.headers['x-access-MobileID'];
-
+        MobileID  = req.body.MobileID || req.query.MobileID || req.headers['x-access-MobileID'],
+        AppointID  = req.body.AppointID || req.query.AppointID || req.headers['x-access-AppointID'];
+    var today = new Date();
+    today.setHours(0,0,0,0);
     if(DoctorID && ClinicID && MobileID){
 
-        Appointment.find({DoctorID : DoctorID, ClinicID : ClinicID, MobileID : MobileID, rescheduleAttempt : 0},{__v:0},
+        Appointment.find({_id : AppointID, rescheduleAttempt : 0},{__v:0},
 
             function(err,appointment) {
 
@@ -40,7 +42,7 @@ router.post('/rescheduleNumber', function (req, res, next) {
                                 });
                             }
                             else if (machine[0] != '') {
-                                Appointment.update({"DoctorID" : DoctorID, "ClinicID" : ClinicID}, {
+                                Appointment.update({"_id" : AppointID}, {
 
                                     //This will remove the current served user from waiting members list
                                     "ClinicID" : ClinicID,

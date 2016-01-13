@@ -86,7 +86,7 @@ router.post('/addAppointment', function (req, res, next) {
                                 }, function () {
                                     res.send({
                                         code : 200,
-                                        content : 'Success',
+                                        content : data,
                                         AppointmentNumber : machine.TotalAppointments + 1,
                                         msg : 'Appointment is saved in the db'
                                     });

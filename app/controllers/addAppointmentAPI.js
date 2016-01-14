@@ -36,7 +36,7 @@ router.post('/addAppointment', function (req, res, next) {
             }
             else if (machine[0] != '') {
 
-                Appointment.findOne({MobileID : MobileID, ClinicID : ClinicID, DoctorID : DoctorID, DateTime : {"$gte" : today }, cancelAppoint : false}, function (err,appointment) {
+                Appointment.findOne({MobileID : MobileID, ClinicID : ClinicID, DoctorID : DoctorID, $or: [ { DateTime : {"$gte" : today } }, { cancelAppoint : true } ]}, function (err,appointment) {
                     if (err) {
                         res.send({
                             code: 500,

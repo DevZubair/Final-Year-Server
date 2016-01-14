@@ -36,7 +36,7 @@ router.post('/addAppointment', function (req, res, next) {
             }
             else if (machine[0] != '') {
 
-                Appointment.findOne({MobileID : MobileID, ClinicID : ClinicID, DoctorID : DoctorID, DateTime : {"$gte" : today }}, function (err,appointment) {
+                Appointment.findOne({MobileID : MobileID, ClinicID : ClinicID, DoctorID : DoctorID, DateTime : {"$gte" : today }, cancelAppoint : false}, function (err,appointment) {
                     if (err) {
                         res.send({
                             code: 500,
@@ -69,6 +69,7 @@ router.post('/addAppointment', function (req, res, next) {
                             Reviews : {stars : 0, comments : ""},
                             Location : {latit :"" , longit : ""},
                             rescheduleAttempt : 0,
+                            cancelAppoint : false,
                             DateTime : new Date()
                         });
                         appointment_info.save(function(error,data){

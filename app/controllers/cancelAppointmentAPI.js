@@ -40,7 +40,9 @@ router.post('/cancelNumber', function (req, res, next) {
 
                     },function () {
 
-                        Appointment.remove({"_id":AppointID},function () {
+                        Appointment.update({"_id":AppointID},{
+                            "cancelAppoint" : true
+                        },function () {
                             res.send({
                                 code: 200,
                                 content:  'Appointment deleted',

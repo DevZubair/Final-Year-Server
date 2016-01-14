@@ -13,7 +13,7 @@ router.post('/getAllAppointments', function (req, res, next) {
     var today = new Date();
     today.setHours(0,0,0,0);
 
-    Appointment.find({MobileID : MobileID, DateTime : {"$gte" : today } },{__v:0},
+    Appointment.find({MobileID : MobileID, DateTime : {"$gte" : today }, cancelAppoint : false },{__v:0},
 
         function(err,allAppointments) {
 

@@ -13,7 +13,7 @@ router.post('/getPastAppointments', function (req, res, next) {
     var today = new Date();
     today.setHours(0,0,0,0);
 
-    Appointment.find({MobileID : MobileID, DateTime : {"$lt" : today }},{__v:0},
+    Appointment.find({MobileID : MobileID, DateTime : {"$lt" : today }, cancelAppoint : false},{__v:0},
 
         function(err,allAppointments) {
 

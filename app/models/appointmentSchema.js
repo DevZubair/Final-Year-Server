@@ -19,7 +19,8 @@ var appointmentSchema = new Schema({
     Reviews : {stars : {type : Number}, comments : {type : String}},
     Location : {latit :{type : String} , longit : {type : String}},
     Past : {type : Boolean},
-    rescheduleAttempt : {type : Number}
+    rescheduleAttempt : {type : Number},
+    cancelAppoint : {type : Boolean}
 });
 
 mongoose.model('Appointment', appointmentSchema);

@@ -65,7 +65,8 @@ io.on('connection', function (socket) {
             Gender : data.Gender,
             DoctorName : data.DoctorName,
             ClinicName : data.ClinicName,
-            Maker : data.Maker
+            Maker : data.Maker,
+            AppointmentNumber : data.AppointmentNumber
         });
     });
 

@@ -52,6 +52,23 @@ io.on('connection', function (socket) {
 
     });
 
+    socket.on('appointmentAdded', function (data) {
+        console.info('Appointment added of patient : ' + data.PatientFirstName + ' ' + data.PatientLastName);
+
+        io.sockets.emit('appointmentAdded', {
+            ClinicID:data.ClinicID,
+            MobileID : data.MobileID,
+            DoctorID: data.DoctorID,
+            PatientFirstName : data.PatientFirstName,
+            PatientLastName :  data.PatientLastName,
+            PatientAge :  data.PatientAge,
+            Gender : data.Gender,
+            DoctorName : data.DoctorName,
+            ClinicName : data.ClinicName,
+            Maker : data.Maker
+        });
+    });
+
     socket.on('connectedDoctor', function (data) {
 
         console.log('Doctor ID :' + data.doctorID + ' Doctor Name : ' + data.doctorFirstName + ' is online');

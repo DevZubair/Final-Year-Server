@@ -37,7 +37,8 @@ router.post('/changeDoctorStatus', function (req, res, next) {
                     res.send({
                         code: 200,
                         content: 'Success',
-                        msg: 'Doctor Status Update'
+                        msg: 'Doctor Status Update',
+                        status : !doctor[0].Status
                     });
                 });
             }

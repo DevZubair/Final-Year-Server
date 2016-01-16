@@ -18,37 +18,36 @@ router.post('/changeServeNumber', function (req, res, next) {
 
     if(req.body.serveNumber!=0){
 
-        Appointment.find({DoctorID : DoctorID, ClinicID : ClinicID, DateTime : {"$gte" : today }},{__v:0},
+        Appointment.update({"DoctorID" : DoctorID, "ClinicID" : ClinicID, DateTime : {"$gte" : today }}, {
 
-            function(err,appointment) {
+            //This will remove the current served user from waiting members list
+            "ClinicID" : ClinicID,
+            "DoctorID" : DoctorID,
+            "DeviceNumber" : req.body.serveNumber,
+            "DateTime": new Date()
 
-                if (err) {
-                    res.send({
-                        code: 500,
-                        content: 'Not Found',
-                        msg: 'Internal Server Error'
-                    });
-                }
-                else if (appointment[0]) {
-                    Appointment.update({"DoctorID" : DoctorID, "ClinicID" : ClinicID, DateTime : {"$gte" : today }}, {
+        },{multi : true}, function () {
+            Appointment.update({"DoctorID" : DoctorID, "ClinicID" : ClinicID, "DateTime" : {"$gte" : today }, "AppointmentNumber" : req.body.serveNumber}, {
 
-                        //This will remove the current served user from waiting members list
-                        "ClinicID" : ClinicID,
-                        "DoctorID" : DoctorID,
-                        "DeviceNumber" : req.body.serveNumber,
-                        "DateTime": new Date()
+                //This will remove the current served user from waiting members list
+                "ClinicID" : ClinicID,
+                "DoctorID" : DoctorID,
+                "DateTime": new Date(),
+                "Past" : true
 
-                    },{multi : true}, function () {
-                        Appointment.findOneAndUpdate({"DoctorID" : DoctorID, "ClinicID" : ClinicID, DateTime : {"$gte" : today }, AppointmentNumber : req.body.serveNumber}, {
+            }, function () {
+                Appointment.find({DoctorID : DoctorID, ClinicID : ClinicID, DateTime : {"$gte" : today }, AppointmentNumber : req.body.serveNumber},{__v:0},
 
-                            //This will remove the current served user from waiting members list
-                            "ClinicID" : ClinicID,
-                            "DoctorID" : DoctorID,
-                            "DateTime": new Date(),
-                            "Past" : true
+                    function(err,appointment) {
 
-                        }, function () {
-
+                        if (err) {
+                            res.send({
+                                code: 500,
+                                content: 'Not Found',
+                                msg: 'Internal Server Error'
+                            });
+                        }
+                        else if (appointment[0]) {
                             Machine.update({"DoctorID" : DoctorID, "ClinicID" : ClinicID}, {
 
                                 //This will remove the current served user from waiting members list
@@ -86,17 +85,18 @@ router.post('/changeServeNumber', function (req, res, next) {
                                         }
                                     });
                             });
-                        });
+                        }
+                        else{
+                            res.send({
+                                code: 404,
+                                content:  "Appointment Not found",
+                                msg: 'Appointment Error'
+                            });
+                        }
                     });
-                }
-                else{
-                    res.send({
-                        code: 404,
-                        content:  "Appointment Not found",
-                        msg: 'Appointment Error'
-                    });
-                }
+
             });
+        });
     }
     else{
         Appointment.update({"DoctorID" : DoctorID, "ClinicID" : ClinicID, DateTime : {"$gte" : today }}, {

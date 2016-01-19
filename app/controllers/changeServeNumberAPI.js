@@ -87,10 +87,42 @@ router.post('/changeServeNumber', function (req, res, next) {
                             });
                         }
                         else{
-                            res.send({
-                                code: 404,
-                                content:  "Appointment Not found",
-                                msg: 'Appointment Error'
+                            Machine.update({"DoctorID" : DoctorID, "ClinicID" : ClinicID}, {
+
+                                //This will remove the current served user from waiting members list
+                                "ClinicID" : ClinicID,
+                                "DoctorID" : DoctorID,
+                                "CurrentNumber" : req.body.serveNumber,
+                                $pull: { WaitingPersons: appointment[0].MobileID},
+                                "DateTime": new Date()
+
+                            },{multi : true}, function () {
+                                Machine.find({DoctorID : DoctorID, ClinicID : ClinicID},{__v:0},
+
+                                    function(err,machine) {
+
+                                        if (err) {
+                                            res.send({
+                                                code: 500,
+                                                content: 'Not Found',
+                                                msg: 'Internal Server Error'
+                                            });
+                                        }
+                                        else if (machine[0]) {
+                                            res.send({
+                                                code: 200,
+                                                content:  machine[0].WaitingPersons.length,
+                                                msg: 'Success'
+                                            });
+                                        }
+                                        else {
+                                            res.send({
+                                                code: 404,
+                                                content:  'Not found',
+                                                msg: 'Device Not found'
+                                            });
+                                        }
+                                    });
                             });
                         }
                     });

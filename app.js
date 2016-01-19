@@ -93,6 +93,15 @@ io.on('connection', function (socket) {
         });
     });
 });
+/*var interval = setInterval(function() {
+
+    var date = new Date();
+    var hours = ((date.getHours() + 11) % 12 + 1);
+    var suffix = hours >= 12 ? "AM":"PM";
+    hours = ((hours + 11) % 12 + 1) + suffix;
+    console.log(hours);
+}, 3600000);*/ //3600000
+
 
 //app.listen(config.port);
 console.log('Server is running at ' + config.port);

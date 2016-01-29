@@ -139,6 +139,11 @@ module.exports = function(app, config) {
   controllers22.forEach(function (controller) {
     require(controller)(app);
   });
+  var controllers23 = glob.sync(config.root + '/app/controllers/addSuperAdminAPI.js');
+
+  controllers23.forEach(function (controller) {
+    require(controller)(app);
+  });
 
   app.use(function (req, res, next) {
     var err = new Error('Not Found');

@@ -25,8 +25,8 @@ router.post('/addClinic', function (req, res, next) {
             }
             else if (clinic != null) {
                 res.send({
-                    code: 200,
-                    content: 'Clinic Found',
+                    code: 400,
+                    content: 'Bad Request',
                     msg: 'Clinic is already in the db'
                 });
             }

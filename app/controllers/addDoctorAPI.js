@@ -91,7 +91,7 @@ router.post('/addDoctor', function (req, res, next) {
                                             res.send({
                                                 code : 200,
                                                 content : 'Success',
-                                                msg : 'Device is saved in the db'
+                                                msg : 'Device and Doctor is saved in the db'
                                             });
                                         }
                                     })

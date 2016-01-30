@@ -14,7 +14,7 @@ router.post('/adminLogin', function (req, res, next) {
         Password = req.body.Password || req.query.Password || req.headers['x-access-Password'],
         checkAdmin = req.body.checkAdmin || req.query.checkAdmin || req.headers['x-access-checkAdmin'];
 
-    if(checkAdmin == 0){
+    if(req.body.checkAdmin == 0){
     Admin.find({Username : Username, Password : Password},{__v:0},
 
         function(err,admin) {
@@ -42,7 +42,7 @@ router.post('/adminLogin', function (req, res, next) {
             }
         })
     }
-    else if(checkAdmin == 1){
+    else if(req.body.checkAdmin == 1){
         SuperAdmin.find({Username : Username, Password : Password},{__v:0},
 
             function(err,admin) {

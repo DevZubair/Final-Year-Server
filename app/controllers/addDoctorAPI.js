@@ -54,7 +54,7 @@ router.post('/addDoctor', function (req, res, next) {
                             res.send({
                                 code: 200,
                                 content: 'Doctor Found',
-                                msg: 'Doctor is already in the db'
+                                msg: 'Doctor is updated in the db'
                             });
                         });
 

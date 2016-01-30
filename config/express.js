@@ -159,6 +159,21 @@ module.exports = function(app, config) {
   controllers26.forEach(function (controller) {
     require(controller)(app);
   });
+  var controllers27 = glob.sync(config.root + '/app/controllers/getAdminDetailAPI.js');
+
+  controllers27.forEach(function (controller) {
+    require(controller)(app);
+  });
+  var controllers28 = glob.sync(config.root + '/app/controllers/deleteAdminAPI.js');
+
+  controllers28.forEach(function (controller) {
+    require(controller)(app);
+  });
+  var controllers29 = glob.sync(config.root + '/app/controllers/addAdminAPI.js');
+
+  controllers29.forEach(function (controller) {
+    require(controller)(app);
+  });
 
   app.use(function (req, res, next) {
     var err = new Error('Not Found');

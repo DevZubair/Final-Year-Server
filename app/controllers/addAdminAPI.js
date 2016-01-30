@@ -19,7 +19,7 @@ router.post('/addAdmin', function (req, res, next) {
         Password  = req.body.Password || req.query.Password || req.headers['x-access-Password'],
         Username  = req.body.Username || req.query.Username || req.headers['x-access-Username'];
 
-    if(FirstName && LastName && ClinicID && Password && Username)
+    if(FirstName && LastName && ClinicID && Password && Username && ClinicName)
     {
         Clinic.findOne({_id : ClinicID}, function (err,clinic) {
             if (err) {
@@ -30,7 +30,7 @@ router.post('/addAdmin', function (req, res, next) {
                 });
             }
             else if (clinic != null) {
-                Admin.findOne({Username : Username}, function (err,doctor) {
+                Admin.findOne({Username : Username}, function (err,admin) {
                     if (err) {
                         res.send({
                             code: 500,
@@ -38,11 +38,24 @@ router.post('/addAdmin', function (req, res, next) {
                             msg: 'Internal Server Error'
                         });
                     }
-                    else if (doctor != null) {
-                        res.send({
-                            code: 200,
-                            content: 'Admin Found',
-                            msg: 'Admin is already in the db'
+                    else if (admin != null) {
+
+                        Admin.update({"Username" : Username},{
+                            "FirstName" : FirstName,
+                            "LastName" : LastName,
+                            "Age" : Age,
+                            "Gender" : Gender,
+                            "ClinicID" : ClinicID,
+                            "ClinicName" : ClinicName,
+                            "DateTime" : new Date(),
+                            "Password" : Password
+
+                        }, function () {
+                            res.send({
+                                code: 200,
+                                content: 'Admin Found',
+                                msg: 'Admin is updated in the db'
+                            });
                         });
                     }
                     else{

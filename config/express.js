@@ -144,6 +144,11 @@ module.exports = function(app, config) {
   controllers23.forEach(function (controller) {
     require(controller)(app);
   });
+  var controllers24 = glob.sync(config.root + '/app/controllers/deleteDoctorAPI.js');
+
+  controllers24.forEach(function (controller) {
+    require(controller)(app);
+  });
 
   app.use(function (req, res, next) {
     var err = new Error('Not Found');

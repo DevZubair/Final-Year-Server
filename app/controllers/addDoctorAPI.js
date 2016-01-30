@@ -48,8 +48,8 @@ router.post('/addDoctor', function (req, res, next) {
                             "Speciality" : Speciality,
                             "Timings" : Timings,
                             "Status" : false,
-                            "Password" : Password,
-                            "Username" : Username
+                            "Password" : Password
+
                         }, function () {
                             res.send({
                                 code: 200,

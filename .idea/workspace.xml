@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1393fdb5-9141-4743-8998-b50094cdffc4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/getDoctorsAPI.js" afterPath="$PROJECT_DIR$/app/controllers/getDoctorsAPI.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/addClinicAPI.js" afterPath="$PROJECT_DIR$/app/controllers/addClinicAPI.js" />
     </list>
     <ignored path="Server.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,11 +43,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="getDoctorsAPI.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="getDoctorsAPI.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/getDoctorsAPI.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.43037975">
+            <state vertical-scroll-proportion="0.0">
               <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="addClinicAPI.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/controllers/addClinicAPI.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.6025317">
+              <caret line="50" column="34" selection-start-line="50" selection-start-column="34" selection-end-line="50" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -110,12 +120,12 @@
         <option value="$PROJECT_DIR$/app/models/superAdminSchema.js" />
         <option value="$PROJECT_DIR$/app/controllers/addSuperAdminAPI.js" />
         <option value="$PROJECT_DIR$/app/controllers/adminLoginAPI.js" />
-        <option value="$PROJECT_DIR$/app/controllers/addClinicAPI.js" />
         <option value="$PROJECT_DIR$/app/controllers/addDoctorAPI.js" />
         <option value="$PROJECT_DIR$/app/controllers/deleteClinicAPI.js" />
         <option value="$PROJECT_DIR$/app/controllers/deleteDoctorAPI.js" />
         <option value="$PROJECT_DIR$/config/express.js" />
         <option value="$PROJECT_DIR$/app/controllers/getDoctorsAPI.js" />
+        <option value="$PROJECT_DIR$/app/controllers/addClinicAPI.js" />
       </list>
     </option>
   </component>
@@ -678,14 +688,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/addClinicAPI.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="41" selection-start-line="28" selection-start-column="41" selection-end-line="28" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/doctorsSchema.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -752,8 +754,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/getDoctorsAPI.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43037975">
+        <state vertical-scroll-proportion="0.0">
           <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/addClinicAPI.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6025317">
+          <caret line="50" column="34" selection-start-line="50" selection-start-column="34" selection-end-line="50" selection-end-column="34" />
           <folding />
         </state>
       </provider>

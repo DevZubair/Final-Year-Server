@@ -50,7 +50,7 @@ router.post('/addClinic', function (req, res, next) {
                     else{
                         res.send({
                             code : 200,
-                            content : 'Success',
+                            content : data,
                             msg : 'Clinic is saved in the db'
                         });
                     }

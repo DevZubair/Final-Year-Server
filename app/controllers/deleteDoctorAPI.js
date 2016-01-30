@@ -12,7 +12,7 @@ router.post('/deleteClinicDoctors', function (req, res, next) {
     var ClinicID = req.body.ClinicID || req.query.ClinicID || req.headers['x-access-ClinicID'],
         DoctorID = req.body.DoctorID || req.query.DoctorID || req.headers['x-access-DoctorID'];
 
-    Doctor.find({DoctorID : DoctorID},{__v:0},
+    Doctor.find({_id : DoctorID},{__v:0},
 
         function(err,allDoctors) {
 
@@ -23,8 +23,8 @@ router.post('/deleteClinicDoctors', function (req, res, next) {
                     msg: 'API not called properly'
                 });
             }
-            else if(allDoctors[0]!=''){
-                Doctor.remove( { DoctorID: DoctorID }, function (err,data) {
+            else if(allDoctors[0] != undefined){
+                Doctor.remove( { _id: DoctorID }, function (err,data) {
                     if(err){
                         res.send({
                             code: 500,

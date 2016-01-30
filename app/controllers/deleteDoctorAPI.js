@@ -1,7 +1,8 @@
 var express = require('express'),
     router    = express.Router(),
     mongoose     = require('mongoose'),
-    Doctor = mongoose.model('Doctor');
+    Doctor = mongoose.model('Doctor'),
+    Machine = mongoose.model('Machine');
 
 module.exports = function (app) {
     app.use('/', router);
@@ -33,11 +34,22 @@ router.post('/deleteClinicDoctors', function (req, res, next) {
                         });
                     }
                     else{
-                        res.send({
-                            code: 200,
-                            content: 'Deleted',
-                            msg: 'Doctor is removed'
-                        });
+                        Machine.remove({DoctorID: DoctorID }, function (err,data) {
+                            if(err){
+                                res.send({
+                                    code: 500,
+                                    content : 'Internal Server Error',
+                                    msg: 'API not called properly'
+                                });
+                            }
+                            else{
+                                res.send({
+                                    code: 200,
+                                    content: 'Deleted',
+                                    msg: 'Doctor is removed'
+                                });
+                            }
+                        })
                     }
                 })
             }

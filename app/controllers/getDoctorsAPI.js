@@ -11,7 +11,7 @@ router.post('/getClinicDoctors', function (req, res, next) {
 
     var ClinicID = req.body.ClinicID || req.query.ClinicID || req.headers['x-access-ClinicID'];
 
-    Doctor.find({ClinicID : ClinicID},{__v:0,Username:0,Password:0},
+    Doctor.find({ClinicID : ClinicID},{__v:0,Password:0},
 
         function(err,allDoctors) {
 

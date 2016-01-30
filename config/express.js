@@ -174,6 +174,11 @@ module.exports = function(app, config) {
   controllers29.forEach(function (controller) {
     require(controller)(app);
   });
+  var controllers30 = glob.sync(config.root + '/app/controllers/findClinicAPI.js');
+
+  controllers30.forEach(function (controller) {
+    require(controller)(app);
+  });
 
   app.use(function (req, res, next) {
     var err = new Error('Not Found');

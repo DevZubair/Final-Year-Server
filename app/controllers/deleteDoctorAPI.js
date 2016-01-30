@@ -2,7 +2,8 @@ var express = require('express'),
     router    = express.Router(),
     mongoose     = require('mongoose'),
     Doctor = mongoose.model('Doctor'),
-    Machine = mongoose.model('Machine');
+    Machine = mongoose.model('Machine'),
+    Clinic = mongoose.model('Clinic');
 
 module.exports = function (app) {
     app.use('/', router);
@@ -42,11 +43,19 @@ router.post('/deleteClinicDoctors', function (req, res, next) {
                                     msg: 'API not called properly'
                                 });
                             }
+
                             else{
-                                res.send({
-                                    code: 200,
-                                    content: 'Deleted',
-                                    msg: 'Doctor is removed'
+                                Clinic.update({"_id" : ClinicID}, {
+
+                                    //This will remove the user from waiting members list
+                                    $pull: { Doctors: DoctorID}
+
+                                },function () {
+                                    res.send({
+                                        code: 200,
+                                        content: 'Deleted',
+                                        msg: 'Doctor is removed'
+                                    });
                                 });
                             }
                         })

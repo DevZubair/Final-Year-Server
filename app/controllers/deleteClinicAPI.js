@@ -1,20 +1,19 @@
 var express = require('express'),
     router    = express.Router(),
     mongoose     = require('mongoose'),
-    Doctor = mongoose.model('Doctor');
+    Clinic = mongoose.model('Clinic');
 
 module.exports = function (app) {
     app.use('/', router);
 };
 
-router.post('/deleteClinicDoctors', function (req, res, next) {
+router.post('/deleteClinic', function (req, res, next) {
 
-    var ClinicID = req.body.ClinicID || req.query.ClinicID || req.headers['x-access-ClinicID'],
-        DoctorID = req.body.DoctorID || req.query.DoctorID || req.headers['x-access-DoctorID'];
+    var ClinicID = req.body.ClinicID || req.query.ClinicID || req.headers['x-access-ClinicID'];
 
-    Doctor.find({_id : DoctorID},{__v:0},
+    Clinic.find({_id : ClinicID},{__v:0},
 
-        function(err,allDoctors) {
+        function(err,ClinicData) {
 
             if(err){
                 res.send({
@@ -23,8 +22,8 @@ router.post('/deleteClinicDoctors', function (req, res, next) {
                     msg: 'API not called properly'
                 });
             }
-            else if(allDoctors[0] != undefined){
-                Doctor.remove( { _id: DoctorID }, function (err,data) {
+            else if(ClinicData[0] != undefined){
+                Clinic.remove( { _id: ClinicID }, function (err,data) {
                     if(err){
                         res.send({
                             code: 500,
@@ -36,7 +35,7 @@ router.post('/deleteClinicDoctors', function (req, res, next) {
                         res.send({
                             code: 200,
                             content: 'Deleted',
-                            msg: 'Doctor is removed'
+                            msg: 'Clinic is removed'
                         });
                     }
                 })
@@ -45,7 +44,7 @@ router.post('/deleteClinicDoctors', function (req, res, next) {
                 res.send({
                     code: 404,
                     content: 'Not Found',
-                    msg: 'No Doctor found'
+                    msg: 'No Clinic found'
                 });
             }
         })

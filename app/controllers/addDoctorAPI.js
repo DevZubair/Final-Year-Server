@@ -40,11 +40,24 @@ router.post('/addDoctor', function (req, res, next) {
                         });
                     }
                     else if (doctor != null) {
-                        res.send({
-                            code: 200,
-                            content: 'Doctor Found',
-                            msg: 'Doctor is already in the db'
+
+                        Doctor.update({"Username" : Username},{
+                            "DoctorFirstName" : DoctorFirstName,
+                            "DoctorLastName" : DoctorLastName,
+                            "Role" : Role,
+                            "Speciality" : Speciality,
+                            "Timings" : Timings,
+                            "Status" : false,
+                            "Password" : Password,
+                            "Username" : Username
+                        }, function () {
+                            res.send({
+                                code: 200,
+                                content: 'Doctor Found',
+                                msg: 'Doctor is already in the db'
+                            });
                         });
+
                     }
                     else{
                         var doctor_info=new Doctor({
@@ -54,7 +67,7 @@ router.post('/addDoctor', function (req, res, next) {
                             Speciality : Speciality,
                             ClinicID : ClinicID,
                             Timings : Timings,
-                            Status : "Available",
+                            Status : false,
                             Password : Password,
                             Username : Username
                         });
